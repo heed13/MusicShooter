@@ -23,7 +23,6 @@ public class MultiTrackGame : MonoBehaviour {
 		if (MultiTrackGame.instance == null) {
 			MultiTrackGame.instance = this;
 		}
-		//ADD TRACKS BY: PATH, MIN INTENSITY, MAX INTENSITY
 		for (int i = 0; i < trackInfo.Count; i++) {
 			addTrack (trackInfo [i]);
 		}
@@ -38,7 +37,6 @@ public class MultiTrackGame : MonoBehaviour {
 		track.onEmptyEvent = onEmptyEvent;
 		tracks.Add (track);
 	}
-
 
 	public void incrementTimeOfTrack(int trackId)
 	{

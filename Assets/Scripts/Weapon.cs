@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class Weapon : MonoBehaviour
 {
+	public string name;
 	public GameObject projectile;
 	public int projectileCount = 15;
 

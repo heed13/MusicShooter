@@ -4,7 +4,8 @@ using System.Collections.Generic;
 public class VisualizerController : MonoBehaviour 
 {
 	public static VisualizerController instance;
-	public List<VisualizerBar> bars;
+	public GameObject barPrefab;
+	public List<VisualizerBar> bars = new List<VisualizerBar>();
 	public int freeBar = 0;
 
 	// Use this for initialization
@@ -14,15 +15,17 @@ public class VisualizerController : MonoBehaviour
 			VisualizerController.instance = this;
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () 
+
+	void centerTracks()
 	{
-	
+
 	}
 
-	public void linkTrack(Track track)
+	public void addTrack(Track track)
 	{
+		GameObject go = (GameObject) Instantiate (barPrefab, transform.position, Quaternion.identity);
+		go.transform.parent = transform;
+		bars.Add(go.GetComponent<VisualizerBar>());
 		if (freeBar < bars.Count) {
 			bars [freeBar].SetColor (track.color.color);
 			bars [freeBar++].audioTrack = track.audioSource;

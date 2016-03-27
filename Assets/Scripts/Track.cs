@@ -58,6 +58,6 @@ public class Track : MonoBehaviour
 		audioSource.volume = maxVolume = _maxVolume;
 		audioSource.Play ();
 		color = info.color;
-		VisualizerController.instance.linkTrack (this);
+		VisualizerController.instance.addTrack (this);
 	}
 }
