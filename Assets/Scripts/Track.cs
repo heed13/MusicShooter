@@ -44,9 +44,10 @@ public class Track : MonoBehaviour
 		}
 	}
 
-	public void IncementTimer()
+	public void IncementTimer(float amount = -1)
 	{
-		audioSource.volume += incrementAmount;
+		amount = (amount != -1) ? amount : incrementAmount;
+		audioSource.volume += amount;
 	}
 
 	public void load(TrackInfo info, float _maxVolume)

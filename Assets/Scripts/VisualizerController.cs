@@ -23,9 +23,9 @@ public class VisualizerController : MonoBehaviour
 
 	public void addTrack(Track track)
 	{
-		GameObject go = (GameObject) Instantiate (barPrefab, transform.position, Quaternion.identity);
-		go.transform.parent = transform;
-		bars.Add(go.GetComponent<VisualizerBar>());
+//		GameObject go = (GameObject) Instantiate (barPrefab, transform.position, Quaternion.identity);
+	//	go.transform.parent = transform;
+	//	bars.Add(go.GetComponent<VisualizerBar>());
 		if (freeBar < bars.Count) {
 			bars [freeBar].SetColor (track.color.color);
 			bars [freeBar++].audioTrack = track.audioSource;

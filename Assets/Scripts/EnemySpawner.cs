@@ -14,7 +14,6 @@ public class EnemySpawner : MonoBehaviour
 	private float nextSpawn = 0;
 	private int numTracks;
 	private int nextSpawnTrack = 0;
-	private List<KeyValuePair<int,int>> enemyTrackCounts; //key: size, value: trackId
 	private GameObject targetPlayer;
 
 	void Awake()
@@ -53,21 +52,6 @@ public class EnemySpawner : MonoBehaviour
 			}
 			GameObject go = (GameObject)Instantiate (prefab, spawnPoints [index].transform.position, Quaternion.identity);
 			go.GetComponent<Enemy> ().trackId = nextSpawnTrack++ % numTracks;
-		}
-	}
-
-	int GetLowestTrackNumber()
-	{
-		enemyTrackCounts.Sort (SortByCount);
-		return enemyTrackCounts [0].Key;
-	}
-
-	public int SortByCount(KeyValuePair<int,int> a, KeyValuePair<int,int> b) 
-	{
-		if (a.Value <= b.Value) {
-			return 0;
-		} else {
-			return 1;
 		}
 	}
 

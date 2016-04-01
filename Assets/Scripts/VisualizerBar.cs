@@ -7,7 +7,7 @@ public class VisualizerBar : MonoBehaviour {
 	public AudioSource audioTrack;
 	private Slider slider;
 
-	void Awake()
+	void Start()
 	{
 		slider = GetComponent<Slider> ();
 	}

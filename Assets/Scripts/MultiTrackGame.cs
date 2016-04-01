@@ -23,6 +23,9 @@ public class MultiTrackGame : MonoBehaviour {
 		if (MultiTrackGame.instance == null) {
 			MultiTrackGame.instance = this;
 		}
+	}
+	void Start()
+	{
 		for (int i = 0; i < trackInfo.Count; i++) {
 			addTrack (trackInfo [i]);
 		}
@@ -43,4 +46,11 @@ public class MultiTrackGame : MonoBehaviour {
 		tracks [trackId].IncementTimer ();
 	}
 
+	public void incrementAllTracks(float amount = 1)
+	{
+		for (int i = 0; i < tracks.Count; i++) {
+			tracks [i].IncementTimer (amount);
+		}
+	}
+		
 }

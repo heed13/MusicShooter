@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
 		// Increment music timer
 		MultiTrackGame.instance.incrementTimeOfTrack (trackId);
 		// Increment player score
-		GameManager.instance.score++;
+		GameManager.instance.IncrementScore();
 		Kill ();
 	}
 	public virtual void Kill()
