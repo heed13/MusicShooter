@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
 public class VisualizerBar : MonoBehaviour {
-	public AudioSource audioTrack;
+	public Track audioTrack;
 	private Slider slider;
 
 	void Start()
@@ -15,7 +15,7 @@ public class VisualizerBar : MonoBehaviour {
 	void LateUpdate ()
 	{
 		if (audioTrack != null)
-			slider.value = audioTrack.volume * 100;
+			slider.value = audioTrack.currentVolume * 100;
 	}
 
 	public void SetColor(Color col)

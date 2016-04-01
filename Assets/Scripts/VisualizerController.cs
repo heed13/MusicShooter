@@ -28,7 +28,7 @@ public class VisualizerController : MonoBehaviour
 	//	bars.Add(go.GetComponent<VisualizerBar>());
 		if (freeBar < bars.Count) {
 			bars [freeBar].SetColor (track.color.color);
-			bars [freeBar++].audioTrack = track.audioSource;
+			bars [freeBar++].audioTrack = track;
 		}
 	}
 }

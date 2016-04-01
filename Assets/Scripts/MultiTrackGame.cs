@@ -6,7 +6,8 @@ using UnityEngine.Events;
 public class MultiTrackGame : MonoBehaviour {
 	public static MultiTrackGame instance;
 	public float maxVolume = 1;
-	public List<TrackInfo> trackInfo;
+	public SongInfo song;
+	//public List<TrackInfo> trackInfo;
 	public int numTracks;
 
 	private List<Track> tracks = new List<Track>();
@@ -26,10 +27,10 @@ public class MultiTrackGame : MonoBehaviour {
 	}
 	void Start()
 	{
-		for (int i = 0; i < trackInfo.Count; i++) {
-			addTrack (trackInfo [i]);
+		for (int i = 0; i < song.tracks.Count; i++) {
+			addTrack (song.tracks [i]);
 		}
-		numTracks = tracks.Count;
+		numTracks = song.tracks.Count;
 
 	}
 

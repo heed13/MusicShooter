@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager instance;
 	public int trophyNum = 100000;
+	private bool trophyUnlocked = false;
 	public int score;
 	public GameObject player;
 
@@ -59,12 +60,13 @@ public class GameManager : MonoBehaviour
 		score += amount;
 
 		// TODO: this needs to be a proper built architecture for acheivements.
-		if (score >= trophyNum) {
-			GameJolt.API.Trophies.Get (54325, (GameJolt.API.Objects.Trophy trophy) => {
+		if (score >= trophyNum && GameJolt.API.Manager.Instance.CurrentUser != null) {
+			GameJolt.API.Trophies.Get (54407, (GameJolt.API.Objects.Trophy trophy) => {
 				if (trophy != null) {
-					if (!trophy.Unlocked) {
-						GameJolt.API.Trophies.Unlock (54325, (bool success) => {
+					if (!trophy.Unlocked && !trophyUnlocked) {
+						GameJolt.API.Trophies.Unlock (54407, (bool success) => {
 							if (success) {
+								trophyUnlocked = true;
 							}
 						});
 					}

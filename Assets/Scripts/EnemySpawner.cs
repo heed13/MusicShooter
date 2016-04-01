@@ -51,6 +51,9 @@ public class EnemySpawner : MonoBehaviour
 				index -= spawnPoints.Count;
 			}
 			GameObject go = (GameObject)Instantiate (prefab, spawnPoints [index].transform.position, Quaternion.identity);
+			if (numTracks == 0) {
+				numTracks = MultiTrackGame.instance.numTracks;
+			}
 			go.GetComponent<Enemy> ().trackId = nextSpawnTrack++ % numTracks;
 		}
 	}
