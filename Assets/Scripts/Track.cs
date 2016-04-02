@@ -7,7 +7,7 @@ public struct TrackInfo
 	public string name;
 	public List<AudioClip> audioClips;
 	public string notes;
-	public ColorInfo color;
+	public TrackColor color;
 }
 
 public class Track : MonoBehaviour 
@@ -16,6 +16,9 @@ public class Track : MonoBehaviour
 	public string path;
 	public List<AudioSource> audioSources = new List<AudioSource>();
 	public float maxVolume;
+	public TrackColor trackColor;
+
+	[HideInInspector]
 	public ColorInfo color;
 
 	public float onEmptyEventTimer = 1;
@@ -66,7 +69,7 @@ public class Track : MonoBehaviour
 			source.volume = maxVolume = _maxVolume;
 			source.Play ();
 		}
-		color = info.color;
+		color = TrackColorHandler.getInfoByColor(info.color);
 		VisualizerController.instance.addTrack (this);
 	}
 }

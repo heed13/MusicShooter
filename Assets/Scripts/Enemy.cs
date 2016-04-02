@@ -16,8 +16,8 @@ public class Enemy : MonoBehaviour
 	void Start()
 	{
 		rb = GetComponent<Rigidbody> ();
-		transform.Find ("default").GetComponent<Renderer> ().material = MultiTrackGame.instance.song.tracks [trackId].color.enemyMat;
-		GetComponent<MapMarker>().markerSprite = MultiTrackGame.instance.song.tracks [trackId].color.mapMarker;
+		transform.Find ("default").GetComponent<Renderer> ().material = MultiTrackGame.instance.tracks [trackId].color.enemyMat;
+		GetComponent<MapMarker>().markerSprite = MultiTrackGame.instance.tracks [trackId].color.mapMarker;
 
 		target = GameObject.FindGameObjectWithTag ("Player");
 	}

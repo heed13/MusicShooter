@@ -5,6 +5,7 @@ using System.Collections;
 
 public class Sun : MonoBehaviour 
 {
+	public int playerDmg = 15;
 	public GameObject particleBurn;
 	public GameObject particleExplode;
 	public float destoryWaitTime = 1.5f;
@@ -52,6 +53,7 @@ public class Sun : MonoBehaviour
 
 	IEnumerator stopBurning(GameObject obj)
 	{
+		obj.GetComponent<PlayerHealth> ().TakeDmg (playerDmg);
 		yield return new WaitForSeconds (destoryWaitTime);
 		alreadyBurningObjs.Remove (obj);
 	}

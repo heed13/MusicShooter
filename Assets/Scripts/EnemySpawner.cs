@@ -40,6 +40,9 @@ public class EnemySpawner : MonoBehaviour
 	// Coroutine?
 	void Spawn()
 	{
+		if (numTracks == 0) {
+			numTracks = MultiTrackGame.instance.numTracks;
+		}
 		for (int i = 0; i < enemiesPerSpawn; i++) {
 			int index;
 			if (randomizeSpawner) {

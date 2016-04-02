@@ -10,7 +10,8 @@ public class MultiTrackGame : MonoBehaviour {
 	//public List<TrackInfo> trackInfo;
 	public int numTracks;
 
-	private List<Track> tracks = new List<Track>();
+	[HideInInspector]
+	public List<Track> tracks = new List<Track>();
 
 	public GameObject trackTarget;
 
