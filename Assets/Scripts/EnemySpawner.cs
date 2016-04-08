@@ -23,7 +23,6 @@ public class EnemySpawner : MonoBehaviour
 	{
 		targetPlayer = GameObject.FindGameObjectWithTag ("Player");
 
-		numTracks = MultiTrackGame.instance.numTracks;
 		spawnPoints = new List<GameObject> (GameObject.FindGameObjectsWithTag("SpawnPoint"));
 	}
 
@@ -36,6 +35,8 @@ public class EnemySpawner : MonoBehaviour
 		if (targetPlayer == null) {
 			active = false;
 		}
+		numTracks = MultiTrackGame.instance.numTracks;
+
 	}
 	// Coroutine?
 	void Spawn()

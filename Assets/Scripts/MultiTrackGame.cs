@@ -22,12 +22,15 @@ public class MultiTrackGame : MonoBehaviour {
 
 	void Awake()
 	{
-		if (MultiTrackGame.instance == null) {
+		
+	}
+	void OnEnable()
+	{
+		if (MultiTrackGame.instance != this) {
 			MultiTrackGame.instance = this;
 		}
-	}
-	void Start()
-	{
+		VisualizerController.instance.clearTracks ();
+		tracks.Clear ();
 		for (int i = 0; i < song.tracks.Count; i++) {
 			addTrack (song.tracks [i]);
 		}

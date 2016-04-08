@@ -20,6 +20,14 @@ public class VisualizerController : MonoBehaviour
 	{
 
 	}
+	public void clearTracks()
+	{
+		for (int i = 0; i < bars.Count; i++) {
+			bars [i].SetColor (Color.black);
+			bars [i].audioTrack = null;
+		}
+		freeBar = 0;
+	}
 
 	public void addTrack(Track track)
 	{
