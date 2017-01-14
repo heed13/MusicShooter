@@ -22,19 +22,20 @@ public class Weapon : MonoBehaviour
 		}
 		return objs;
 	}
-	public virtual void Activate()
+	public virtual void Activate(Vector3 aimPos)
 	{
 		Vector3 pos = transform.position;
 		Quaternion rot = transform.rotation;
-		LaunchProjectile (pos, rot);
+		LaunchProjectile (pos, rot, aimPos);
 	}
-	protected virtual void LaunchProjectile(Vector3 pos, Quaternion rot)
+	protected virtual void LaunchProjectile(Vector3 pos, Quaternion rot, Vector3 aimPos)
 	{
 		for (int i = 0; i < projectileObjs.Count; i++) {
 			GameObject bullet = projectileObjs [i];
 			if (!bullet.activeInHierarchy) {
 				bullet.transform.position = pos;
 				bullet.transform.rotation = rot;
+				bullet.transform.LookAt (aimPos);
 				bullet.GetComponent<Projectile> ().weapon = this;
 				bullet.SetActive (true);
 				break;

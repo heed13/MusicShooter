@@ -29,9 +29,9 @@ public class Enemy : MonoBehaviour
 			transform.position = Vector3.MoveTowards (transform.position, target.transform.position, moveSpeed * Time.deltaTime);
 		}
 		//if (Vector3.Distance(transform.position, new Vector3(transform.position.x, 0, transform.position.z)) > .5) {
-		if (transform.position.y >= 0.01f || transform.position.y <= 0.01f) {
-			transform.position = new Vector3 (transform.position.x, 0, transform.position.z);
-		}
+		//if (transform.position.y >= 0.01f || transform.position.y <= 0.01f) {
+	//		transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
+	//	}
 
 	}
 	public virtual void PlayerKilled()

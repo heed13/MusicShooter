@@ -7,6 +7,7 @@ public class FlightSim : MonoBehaviour
 {
 	private Rigidbody rb;
 	public Transform model;
+	public Animator anim;
 
 	public const string VERTICAL_AXIS = "Vertical";
 	public const string HORIZONTAL_AXIS = "Horizontal";
@@ -19,34 +20,62 @@ public class FlightSim : MonoBehaviour
 	public float pitchSpeed = 1;
 	public float thrustSpeed = 1;
 
-	private void GetInputs()
+	private void GetAndProcessInputs()
 	{
 		float yaw = Input.GetAxis (HORIZONTAL_AXIS);
 		float pitch = Input.GetAxis (VERTICAL_AXIS);
 		pitch *= (invertPitch) ? 1 : -1;
 
-		bool thrust = Input.GetKey (THRUST_AXIS);
+		bool thrustActive = Input.GetKey (THRUST_AXIS);
 
-		if (yaw != 0) {
-			transform.Rotate (Vector3.up, yaw * yawSpeed);
-			// lerp roll to 45-40deg then roll back if yaw == 0
-			if (Mathf.Abs(model.rotation.z) < 45) {
-				model.Rotate (Vector3.forward, rollSpeed * yaw);
-			}
-		} else {
-			//.rotation = Quaternion.Slerp(transform.rotation, new Quaternion(transform.rotation.x, transform.rotation.y, 0,1),Time.time * rollSpeed);
+
+		YawMovement (yaw);
+		PitchMovement (pitch);
+
+		ApplyThrust (thrustActive);
+
+		anim.SetBool ("HasThrust",thrustActive);
+		anim.SetFloat ("Yaw", yaw);
+		anim.SetFloat ("Pitch", pitch);
+	}
+		
+	private void ApplyThrust(bool applied)
+	{
+		if (applied) {
+			rb.AddForce (transform.forward * thrustSpeed, ForceMode.Force);
 		}
+	}
+
+	private void PitchMovement(float pitch)
+	{
 		if (pitch != 0) {
 			transform.Rotate (Vector3.right, pitch * pitchSpeed);
 		}
 
-		if (thrust) {
-			rb.AddForce (transform.forward*thrustSpeed,ForceMode.Force);
-		}
-
 	}
+	private void YawMovement(float yaw)
+	{
+		if (yaw != 0) {
+			transform.Rotate (Vector3.up, yaw * yawSpeed);
 
-
+		} 
+	}
+		
+	private float ClampAngle(float angle, float min, float max)
+	{
+		if (angle < 90 || angle > 270) {
+			if (angle > 180)
+				angle -= 360;
+			if (max > 180)
+				max -= 360;
+			if (min > 180)
+				min -= 360;
+		}
+		angle = Mathf.Clamp (angle, min, max);
+		if (angle < 0)
+			angle += 360;
+		return angle;
+	}
 
 	void Awake()
 	{
@@ -56,7 +85,7 @@ public class FlightSim : MonoBehaviour
 
 	void Update()
 	{
-		GetInputs ();
+		GetAndProcessInputs ();
 	}
 
 }
