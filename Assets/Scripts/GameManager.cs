@@ -77,7 +77,9 @@ public class GameManager : MonoBehaviour
 	public void GameOver()
 	{
 		gameOverScreen.SetActive (true);
-		EnemyController.instance.spawner.active = false;
+		if (EnemyController.instance && EnemyController.instance.spawner) {
+			EnemyController.instance.spawner.active = false;
+		}
 	}
 
 	public void RestartGame()

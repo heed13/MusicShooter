@@ -25,8 +25,11 @@ public class Sun : MonoBehaviour
 		}
 		
 		alreadyBurningObjs.Add (col.gameObject);
-		GameObject go = (GameObject)Instantiate (particleBurn, col.transform.position, Quaternion.identity);
-		go.transform.parent = col.gameObject.transform;
+		if (particleBurn) {
+			GameObject go = (GameObject)Instantiate (particleBurn, col.transform.position, Quaternion.identity);
+			go.transform.parent = col.gameObject.transform;
+
+		}
 		if (!col.gameObject.CompareTag ("Player")) {
 			StartCoroutine (DestroyObj (col.gameObject));
 		} else {
@@ -42,7 +45,9 @@ public class Sun : MonoBehaviour
 		try {
 			if (obj != null) {
 				alreadyBurningObjs.Remove (obj);
-				Instantiate (particleExplode, obj.transform.position, Quaternion.identity);
+				if (particleExplode) {
+					Instantiate (particleExplode, obj.transform.position, Quaternion.identity);
+				}
 				Destroy (obj);
 			}
 		}
